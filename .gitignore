@@ -1,0 +1,17 @@
+# Build artifacts
+backend/target/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Env / secrets
+.env
+.env.local
+*.pem
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.iml
+sanni_*.json
