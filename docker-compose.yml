@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: fit-certificate-backend
+    environment:
+      # Primary: Merge Gateway AI API router
+      MERGE_GATEWAY_API_KEY: ${MERGE_GATEWAY_API_KEY:-}
+      merge.gateway.model: ${MERGE_GATEWAY_MODEL:-google/gemini-3-flash-preview}
+      # Secondary: Anthropic Claude direct (used if gateway not configured)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      anthropic.model: ${ANTHROPIC_MODEL:-claude-sonnet-4-6}
+      cors.allowed-origins: http://localhost:3000,http://127.0.0.1:3000
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        BACKEND_URL: http://backend:8081
+    container_name: fit-certificate-frontend
+    environment:
+      BACKEND_URL: http://backend:8081
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped

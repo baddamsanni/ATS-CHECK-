@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #faf8f5;
+  --text: #1a1a1a;
+  --muted: #8a8580;
+  --border: #e8e3dc;
+  --green: #2e7d5b;
+  --amber: #c98a2b;
+  --red: #c0503f;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
