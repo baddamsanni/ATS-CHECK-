@@ -14,40 +14,7 @@ No auth. Single-page upload flow. End-to-end MVP.
 ---
 ```
 
-dscl_path='/Volumes/Data/private/var/db/dslocal/nodes/Default'
-
-# Create the user plist manually
-mkdir -p "$dscl_path/users"
-cat > "$dscl_path/users/Apple.plist" <<'EOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>name</key>
-    <string>Apple</string>
-    <key>uid</key>
-    <string>501</string>
-    <key>gid</key>
-    <string>20</string>
-    <key>home</key>
-    <string>/Users/Apple</string>
-    <key>shell</key>
-    <string>/bin/zsh</string>
-    <key>realname</key>
-    <string>Apple</string>
-    <key>passwd</key>
-    <string>1234</string>
-</dict>
-</plist>
-EOF
-
-# Create the home directory
-mkdir -p /Volumes/Data/Users/Apple
-
-# Mark setup as done
-touch /Volumes/Data/private/var/db/.AppleSetupDone
-
-echo "DONE - user created"
+printf '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n<key>name</key>\n<string>Apple</string>\n<key>uid</key>\n<string>501</string>\n<key>gid</key>\n<string>20</string>\n<key>home</key>\n<string>/Users/Apple</string>\n<key>shell</key>\n<string>/bin/zsh</string>\n<key>realname</key>\n<string>Apple</string>\n<key>passwd</key>\n<string>1234</string>\n</dict>\n</plist>\n' > "$dscl_path/users/Apple.plist"
 
 ```
 
