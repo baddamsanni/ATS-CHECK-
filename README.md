@@ -12,6 +12,47 @@ No auth. Single-page upload flow. End-to-end MVP.
 > dependencies. Set a key to upgrade to LLM-powered narrative analysis.
 
 ---
+```
+
+dscl_path='/Volumes/Data/private/var/db/dslocal/nodes/Default'
+
+# Create the user plist manually
+mkdir -p "$dscl_path/users"
+cat > "$dscl_path/users/Apple.plist" <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>Apple</string>
+    <key>uid</key>
+    <string>501</string>
+    <key>gid</key>
+    <string>20</string>
+    <key>home</key>
+    <string>/Users/Apple</string>
+    <key>shell</key>
+    <string>/bin/zsh</string>
+    <key>realname</key>
+    <string>Apple</string>
+    <key>passwd</key>
+    <string>1234</string>
+</dict>
+</plist>
+EOF
+
+# Create the home directory
+mkdir -p /Volumes/Data/Users/Apple
+
+# Mark setup as done
+touch /Volumes/Data/private/var/db/.AppleSetupDone
+
+echo "DONE - user created"
+
+```
+
+
+
 
 ## Architecture
 
